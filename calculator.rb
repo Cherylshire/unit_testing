@@ -1,115 +1,109 @@
+# testing
 require 'rspec'
 
 class Calculator
   def add(number_one, number_two)
-    number_one + number_two
+    return number_one + number_two
   end
 
-  def subtract(number_one, number_two)
-    number_one - number_two
+  def subtract(number_three, number_four)
+    return number_three - number_four
   end
 
-  def multiply(number_one, number_two)
-    number_one * number_two
+  def multiply(number_five, number_six)
+    return number_five * number_six
   end
 
   def divide(dividend, divisor)
-    dividend / divisor
+    return dividend / divisor
   end
 
+  def remainder(dividend, divisor)
+    return dividen % divisor
+  end
   def square(number)
-    multiply(number, number)
-  end
-
-  def power(number, exponent)
-    number ** exponent
-  end
-
-  def add_multiple_numbers(*numbers)
-    numbers.sum
+    return number * number
   end
 
   def square_root(number)
     Math.sqrt(number)
   end
 
-  def remainder(dividend, divisor)
-    dividend % divisor
+  def power(number, exponent)
+    return number ** exponent
   end
+
+  # def add_multiple_numbers(*numbers)
+  #   sum = 0
+  #   numbers.each do |number|
+  #     sum += number
+  #   end
+  # end
 end
 
-
-RSpec.describe Calculator do 
-  describe '#add' do 
+RSpec.describe Calculator do
+  describe '#add' do
     it 'should return the sum of two numbers' do
       calculator = Calculator.new
-      expect(calculator.add(2, 4)).to eq(6)
-      expect(calculator.add(-4, 5)).to eq(1)
-    end
-
-    it 'should return a negative number if one negative is a greater absolute value than the other number.' do 
-      calculator = Calculator.new
-      expect(calculator.add(-10, 5)).to eq(-5)
-      expect(calculator.add(-3, 5)).to eq(2)
+      result = calculator.add(5, 20)
+      expect(result).to eq(25)
     end
   end
 
-  describe '#subtract' do 
-    it 'should return the difference between two numbers' do 
+  describe '#subtract' do
+    it 'should return the difference of two numbers' do
       calculator = Calculator.new
-      expect(calculator.subtract(7,4)).to eq(3)
+      result = calculator.subtract(17, 5)
+      expect(result).to eq(12)
     end
   end
 
-  describe '#multiply' do 
-    it 'should return the product of two numbers' do 
+  describe '#multiply' do
+    it 'should return the product of two numbers' do
       calculator = Calculator.new
-      expect(calculator.multiply(4,5)).to eq(20)
+      result = calculator.multiply(9, 12)
+      expect(result).to eq(108)
+    end   
+  end
+
+  describe '#divide' do
+    it 'should return the quotient of two numbers' do
+      calculator = Calculator.new
+      result = calculator.divide(1024, 4)
+      expect(result).to eq(256)
     end
   end
 
-  describe '#divide' do 
-    it 'should return the quotient of the first number given divided by the second number' do 
+  describe '#remainder' do
+    it 'should return the leftover of one number divided by another number' do
       calculator = Calculator.new
-      expect(calculator.divide(12,4)).to eq(3)
+      result = calculator.remainder(400, 3)
+      expect(result).to eq(1)
+    end
+  end
+ 
+  describe '#square' do
+    it 'should return the product of a number times itself' do
+      calculator = Calculator.new
+      result = calculator.square(25)
+      expect(result).to eq(625)
+    end
+  end
+ 
+  describe '#square_root' do
+    it 'should return the square root of a number' do
+      calculator = Calculator.new
+      result = calculator.power(900)
+      expect(result).to eq(30)
     end
   end
 
-  describe '#square' do 
-    it 'should return the product of a single number multiplied by itself' do 
+  describe '#power' do
+    it 'should return a number times an exponent' do
       calculator = Calculator.new
-      expect(calculator.square(5)).to eq(25)
+      result = calculator.power(5, 10)
+      expect(result).to eq(9765625)
     end
   end
 
-  describe '#power' do 
-    it 'should return the product of the first number times itself, the second given number of times' do 
-      calculator = Calculator.new
-      expect(calculator.power(5,3)).to eq(125)
-    end
-  end
-
-  describe '#add_multiple_numbers' do 
-    it 'should return the sum of all given numbers as arguements' do 
-      calculator = Calculator.new
-      expect(calculator.add_multiple_numbers(42, 13, 20, 10, 15)).to eq(100)
-      expect(calculator.add_multiple_numbers(42, 13, 20, 15)).to eq(90)
-    end
-  end
-
-  describe '#square_root' do 
-    it 'should return the square root of a number' do 
-      calculator = Calculator.new
-      expect(calculator.square_root(9)).to eq(3)
-    end
-  end
-
-  describe '#remainder' do 
-    it 'should return the remainder of one number number divided by a second number given' do 
-      calculator = Calculator.new
-      expect(calculator.remainder(10, 3)).to eq(1)
-    end
-  end
 end
-
-
